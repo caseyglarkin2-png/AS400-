@@ -20,7 +20,21 @@ import {
   Users,
   Map,
   Anchor,
-  ZapOff
+  ZapOff,
+  Target,
+  BarChart3,
+  Layers,
+  Clock,
+  Award,
+  AlertTriangle,
+  Code,
+  Server,
+  LineChart,
+  Boxes,
+  Package,
+  Calendar,
+  FileText,
+  GitBranch
 } from 'lucide-react';
 
 /**
@@ -565,6 +579,352 @@ const PricingModule = () => {
   );
 };
 
+// 6. CASE STUDIES MODULE
+const CaseStudies = () => {
+  const [activeCase, setActiveCase] = useState(0);
+  
+  const cases = [
+    {
+      id: 0,
+      title: "Private Fleet Net Zero (PFNZ)",
+      subtitle: "Monetizing 'Ghost Capacity'",
+      problem: "80% of private fleet trucks run empty on return trips, burning diesel without revenue",
+      solution: "AI matching algorithm connecting shippers with empty backhaul capacity",
+      metrics: [
+        { label: "Margin Increase", value: "1-4% → 6-24%", color: "#00FF41" },
+        { label: "Cost Savings", value: "5-30%", color: "#00F0FF" },
+        { label: "Empty Miles Reduced", value: "80%", color: "#FFD600" }
+      ],
+      tech: ".NET Core, React, AI Matching Engine, Carbon Tracking",
+      icon: Truck,
+      narrative: "We turned their cost center (empty miles) into a profit center while enabling Scope 3 compliance."
+    },
+    {
+      id: 1,
+      title: "Independent Broker Platform",
+      subtitle: "The 'Franchise-in-a-Box' Model",
+      problem: "Independent agents lacked enterprise-grade tools, limiting growth and efficiency",
+      solution: "Multi-tenant platform offering load boards, finance, CRM to independent agent networks",
+      metrics: [
+        { label: "Agent Productivity", value: "+40%", color: "#00FF41" },
+        { label: "Dev Cost Reduction", value: "35%", color: "#00F0FF" },
+        { label: "Time to Market", value: "90 days", color: "#FFD600" }
+      ],
+      tech: ".NET Core, React, Flutter (iOS/Android), AWS Multi-Tenant Architecture",
+      icon: Users,
+      narrative: "Democratizing enterprise tech for the decentralized brokerage market."
+    },
+    {
+      id: 2,
+      title: "Vehicle Telemetry & InsurTech",
+      subtitle: "Big Data at the Edge",
+      problem: "'Nuclear Verdicts' driving insurance premiums to historic highs",
+      solution: "Real-time sensor data processing to detect harsh braking, speeding, mechanical stress",
+      metrics: [
+        { label: "Insurance Premium Reduction", value: "15-25%", color: "#00FF41" },
+        { label: "Data Points/Second", value: "10,000+", color: "#00F0FF" },
+        { label: "Safety Score Improvement", value: "32%", color: "#FFD600" }
+      ],
+      tech: "Data Lake Architecture, Real-time ML Models, IoT Edge Computing",
+      icon: Activity,
+      narrative: "The software pays for itself through insurance savings—InsurTech meets IoT."
+    }
+  ];
+
+  const activeData = cases[activeCase];
+  const Icon = activeData.icon;
+
+  return (
+    <div className="space-y-8 animate-fadeIn">
+      <div className="border-l-4 border-[#00F0FF] pl-6 bg-gradient-to-r from-[#00F0FF]/10 to-transparent py-2">
+        <h2 className="text-3xl font-bold text-white mb-2">OPERATIONAL EVIDENCE</h2>
+        <p className="text-gray-300 max-w-2xl font-light">
+          Moving beyond theory: Three case studies proving Trigent delivers measurable ROI in the messy reality of US logistics.
+        </p>
+      </div>
+
+      {/* Case Selector */}
+      <div className="flex gap-4 overflow-x-auto pb-4">
+        {cases.map((c, idx) => (
+          <button
+            key={idx}
+            onClick={() => setActiveCase(idx)}
+            className={`flex-shrink-0 px-6 py-4 border-2 transition-all ${
+              activeCase === idx
+                ? 'bg-[#00FF41] text-black border-[#00FF41] font-bold shadow-[0_0_20px_rgba(0,255,65,0.4)]'
+                : 'bg-black text-[#00FF41] border-[#00FF41]/30 hover:border-[#00FF41] hover:bg-[#00FF41]/5'
+            }`}
+          >
+            <div className="text-xs font-mono mb-1">CASE_0{idx + 1}</div>
+            <div className="text-sm font-bold">{c.title}</div>
+          </button>
+        ))}
+      </div>
+
+      {/* Active Case Display */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Left: Details */}
+        <div className="bg-[#0a0a0a] border-2 border-[#00FF41] p-8 space-y-6">
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-16 h-16 bg-[#00FF41] flex items-center justify-center">
+              <Icon size={32} className="text-black" />
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold text-white">{activeData.title}</h3>
+              <p className="text-sm text-[#00F0FF]">{activeData.subtitle}</p>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <div className="text-xs text-[#FFD600] font-bold mb-2 flex items-center gap-2">
+                <AlertTriangle size={14} /> THE PROBLEM
+              </div>
+              <p className="text-gray-300 text-sm">{activeData.problem}</p>
+            </div>
+
+            <div>
+              <div className="text-xs text-[#00FF41] font-bold mb-2 flex items-center gap-2">
+                <Zap size={14} /> THE TRIGENT SOLUTION
+              </div>
+              <p className="text-gray-300 text-sm">{activeData.solution}</p>
+            </div>
+
+            <div>
+              <div className="text-xs text-[#00F0FF] font-bold mb-2 flex items-center gap-2">
+                <Code size={14} /> TECH STACK
+              </div>
+              <p className="text-gray-400 text-xs font-mono">{activeData.tech}</p>
+            </div>
+          </div>
+
+          <div className="border-t-2 border-[#00FF41]/30 pt-4 mt-4">
+            <p className="text-white italic text-sm">"{activeData.narrative}"</p>
+          </div>
+        </div>
+
+        {/* Right: Metrics */}
+        <div className="space-y-4">
+          <div className="bg-black border-2 border-[#00F0FF] p-6">
+            <div className="text-xs text-[#00F0FF] font-bold mb-4 tracking-widest">IMPACT METRICS</div>
+            <div className="space-y-6">
+              {activeData.metrics.map((metric, idx) => (
+                <div key={idx} className="relative">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-gray-300">{metric.label}</span>
+                    <span className="text-2xl font-bold font-mono" style={{ color: metric.color }}>
+                      {metric.value}
+                    </span>
+                  </div>
+                  <div className="h-2 bg-[#111] border border-[#333]">
+                    <div 
+                      className="h-full transition-all duration-1000" 
+                      style={{ 
+                        width: '85%', 
+                        backgroundColor: metric.color,
+                        boxShadow: `0 0 10px ${metric.color}`
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-[#00FF41]/10 border-2 border-[#00FF41] p-6">
+            <div className="text-xs text-[#00FF41] font-bold mb-3 tracking-widest">STRATEGIC RELEVANCE</div>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              This case study proves Trigent understands the {activeCase === 0 ? 'Yield Management' : activeCase === 1 ? 'Decentralized Brokerage' : 'InsurTech/IoT'} opportunity. 
+              It demonstrates our ability to deliver enterprise-grade solutions at mid-market velocity.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// 7. MANIFEST 2026 CTA
+const ManifestCTA = () => {
+  return (
+    <div className="relative bg-black border-4 border-[#FFD600] p-12 overflow-hidden animate-fadeIn">
+      {/* Animated Background */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[#FFD600] rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#00FF41] rounded-full blur-3xl animate-pulse delay-1000" />
+      </div>
+
+      <div className="relative z-10 max-w-5xl mx-auto">
+        <div className="flex items-center gap-4 mb-6">
+          <Calendar className="w-12 h-12 text-[#FFD600]" />
+          <div>
+            <div className="text-xs text-[#FFD600] font-bold tracking-widest">UPCOMING EVENT</div>
+            <h2 className="text-4xl font-bold text-white">MANIFEST 2026</h2>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="bg-black/50 border-2 border-[#FFD600] p-6">
+            <Calendar className="w-8 h-8 text-[#FFD600] mb-3" />
+            <div className="text-xs text-gray-400 mb-1">DATES</div>
+            <div className="text-xl font-bold text-white">Feb 9-11, 2026</div>
+          </div>
+          <div className="bg-black/50 border-2 border-[#FFD600] p-6">
+            <Map className="w-8 h-8 text-[#FFD600] mb-3" />
+            <div className="text-xs text-gray-400 mb-1">VENUE</div>
+            <div className="text-xl font-bold text-white">The Venetian, Las Vegas</div>
+          </div>
+          <div className="bg-black/50 border-2 border-[#FFD600] p-6">
+            <Users className="w-8 h-8 text-[#FFD600] mb-3" />
+            <div className="text-xs text-gray-400 mb-1">ATTENDEES</div>
+            <div className="text-xl font-bold text-white">7,200+ Decision Makers</div>
+          </div>
+        </div>
+
+        <div className="bg-[#FFD600]/10 border-2 border-[#FFD600] p-8 mb-8">
+          <h3 className="text-2xl font-bold text-[#FFD600] mb-4">
+            EXCLUSIVE ROUNDTABLE: "The 61% Reality"
+          </h3>
+          <p className="text-gray-300 mb-6 leading-relaxed">
+            Join Trigent for an intimate discussion on bridging the gap between Legacy Debt and Agentic AI. 
+            No pitch decks. No vendor hype. Just honest dialogue about the technical debt crisis paralyzing 
+            American logistics—and pragmatic pathways forward.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex items-start gap-3">
+              <CheckCircle className="w-5 h-5 text-[#00FF41] flex-shrink-0 mt-1" />
+              <div>
+                <div className="font-bold text-white text-sm">For CTOs & VPs of Technology</div>
+                <div className="text-xs text-gray-400">Mid-to-large 3PLs, Regional Carriers, Retailers</div>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <CheckCircle className="w-5 h-5 text-[#00FF41] flex-shrink-0 mt-1" />
+              <div>
+                <div className="font-bold text-white text-sm">Limited to 20 Participants</div>
+                <div className="text-xs text-gray-400">Chatham House Rule - Off the record discussion</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
+          <button className="bg-[#FFD600] text-black font-bold px-8 py-4 flex items-center gap-3 hover:bg-[#00FF41] hover:shadow-[0_0_30px_rgba(0,255,65,0.5)] transition-all text-lg">
+            <Target size={24} />
+            RSVP FOR ROUNDTABLE
+            <ArrowRight size={24} />
+          </button>
+          <button className="border-2 border-[#FFD600] text-[#FFD600] font-bold px-8 py-4 hover:bg-[#FFD600] hover:text-black transition-all">
+            SCHEDULE BOOTH MEETING
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// 8. TARGET MATRIX
+const TargetMatrix = () => {
+  const targets = [
+    {
+      company: "Ulta Beauty",
+      category: "Shipper (Retail)",
+      opportunity: "Middle East Expansion Support",
+      angle: "We build the tech bridge for your Alshaya partnership",
+      priority: "HIGH",
+      icon: Package
+    },
+    {
+      company: "Dollar General",
+      category: "Shipper (Retail)",
+      opportunity: "Private Fleet Optimization",
+      angle: "We monetize your empty backhauls like PFNZ",
+      priority: "HIGH",
+      icon: Truck
+    },
+    {
+      company: "Exotec",
+      category: "Tech (Robotics)",
+      opportunity: "WMS Integration Partner",
+      angle: "We connect your robots to clients' legacy systems",
+      priority: "MEDIUM",
+      icon: Boxes
+    },
+    {
+      company: "Project44",
+      category: "Tech (Visibility)",
+      opportunity: "Implementation Partner",
+      angle: "We ensure your data flows into client ERPs",
+      priority: "HIGH",
+      icon: Activity
+    },
+    {
+      company: "Estes Express",
+      category: "Carrier (LSP)",
+      opportunity: "Legacy Modernization",
+      angle: "We API-enable your rating engine without downtime",
+      priority: "MEDIUM",
+      icon: Server
+    }
+  ];
+
+  return (
+    <div className="space-y-8 animate-fadeIn">
+      <div className="border-l-4 border-[#FFD600] pl-6 bg-gradient-to-r from-[#FFD600]/10 to-transparent py-2">
+        <h2 className="text-3xl font-bold text-white mb-2">MANIFEST 2026: TARGET ACQUISITION</h2>
+        <p className="text-gray-300 max-w-2xl font-light">
+          Strategic "Must-Win" targets based on market analysis and partnership potential.
+        </p>
+      </div>
+
+      <div className="space-y-4">
+        {targets.map((target, idx) => {
+          const Icon = target.icon;
+          return (
+            <div 
+              key={idx}
+              className="bg-black border-2 border-[#00FF41]/30 hover:border-[#00FF41] p-6 transition-all group cursor-pointer"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                <div className="md:col-span-1 flex justify-center">
+                  <div className="w-12 h-12 bg-[#00FF41]/10 border-2 border-[#00FF41] flex items-center justify-center group-hover:bg-[#00FF41] group-hover:shadow-[0_0_20px_rgba(0,255,65,0.4)] transition-all">
+                    <Icon className="text-[#00FF41] group-hover:text-black" size={24} />
+                  </div>
+                </div>
+                
+                <div className="md:col-span-3">
+                  <div className="text-white font-bold text-lg mb-1">{target.company}</div>
+                  <div className="text-xs text-[#00F0FF] font-mono">{target.category}</div>
+                </div>
+
+                <div className="md:col-span-3">
+                  <div className="text-xs text-gray-400 mb-1">OPPORTUNITY</div>
+                  <div className="text-sm text-gray-300">{target.opportunity}</div>
+                </div>
+
+                <div className="md:col-span-4">
+                  <div className="text-xs text-gray-400 mb-1">STRATEGIC ANGLE</div>
+                  <div className="text-sm text-[#00FF41] italic">"{target.angle}"</div>
+                </div>
+
+                <div className="md:col-span-1 flex justify-end">
+                  <span className={`text-xs font-bold px-3 py-1 border-2 ${
+                    target.priority === 'HIGH' 
+                      ? 'border-[#FFD600] text-[#FFD600] bg-[#FFD600]/10' 
+                      : 'border-[#00F0FF] text-[#00F0FF] bg-[#00F0FF]/10'
+                  }`}>
+                    {target.priority}
+                  </span>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
 
 // MAIN APP COMPONENT
 const App = () => {
@@ -697,7 +1057,10 @@ const App = () => {
               <NavItem id="gap" label="The 61% Reality" icon={TrendingUp} number="2" />
               <NavItem id="tech" label="EDI-to-API Bridge" icon={Cpu} number="3" />
               <NavItem id="identity" label="Identity Protocols" icon={PenTool} number="4" />
-              <NavItem id="proposal" label="Velocity Blueprint" icon={Briefcase} number="5" />
+              <NavItem id="cases" label="Case Studies" icon={Award} number="5" />
+              <NavItem id="manifest" label="Manifest 2026" icon={Calendar} number="6" />
+              <NavItem id="targets" label="Target Matrix" icon={Target} number="7" />
+              <NavItem id="proposal" label="Velocity Blueprint" icon={Briefcase} number="8" />
             </nav>
             
             {/* IBM Style Info Box */}
@@ -889,6 +1252,12 @@ const App = () => {
           )}
 
           {activeTab === 'identity' && <LogoSelector />}
+          
+          {activeTab === 'cases' && <CaseStudies />}
+          
+          {activeTab === 'manifest' && <ManifestCTA />}
+          
+          {activeTab === 'targets' && <TargetMatrix />}
           
           {activeTab === 'proposal' && <PricingModule />}
 
