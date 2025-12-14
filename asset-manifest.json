@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/AS400-/static/css/main.c826769d.css",
+    "main.js": "/AS400-/static/js/main.1c912d11.js",
+    "index.html": "/AS400-/index.html",
+    "main.c826769d.css.map": "/AS400-/static/css/main.c826769d.css.map",
+    "main.1c912d11.js.map": "/AS400-/static/js/main.1c912d11.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c826769d.css",
+    "static/js/main.1c912d11.js"
+  ]
+}
