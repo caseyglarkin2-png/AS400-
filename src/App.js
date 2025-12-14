@@ -25,12 +25,13 @@ import {
 
 /**
  * TRIGENT V3: LEGACY-MODERN CONVERGENCE PROTOTYPE
- * * Design System (BRIGHTER MODE):
- * - Primary (Legacy): #00FF41 (High-Vis Phosphor Green)
- * - Background: #121212 (Lighter Dark) with Radial Gradients
- * - Secondary (Warning): #FFD600 (Bright Amber)
+ * AS/400 IBM 5250 TERMINAL AESTHETICS
+ * * Design System (AUTHENTIC IBM GREEN SCREEN):
+ * - Primary (Legacy): #00FF41 (IBM 5250 Phosphor Green)
+ * - Background: #000000 (Pure Black CRT)
+ * - Secondary (Warning): #FFD600 (System Alert Amber)
  * - Accent (Modern): #00F0FF (Electric Cyan)
- * - Text: Higher contrast whites and light grays
+ * - Text: Bright terminal green with authentic scanlines
  */
 
 // --- STYLES COMPONENT (Loads first to ensure visibility) ---
@@ -41,11 +42,11 @@ const GlobalStyles = () => (
     .font-mono { font-family: 'IBM Plex Mono', monospace; }
     .font-sans { font-family: 'Inter', sans-serif; }
     
-    /* Scrollbar */
-    .custom-scrollbar::-webkit-scrollbar { width: 8px; }
-    .custom-scrollbar::-webkit-scrollbar-track { background: #222; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #00FF41; }
+    /* IBM-Style Scrollbar */
+    .custom-scrollbar::-webkit-scrollbar { width: 10px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: #000; border-left: 2px solid #00FF41; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #00FF41; border-radius: 0; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #00CC33; box-shadow: 0 0 10px #00FF41; }
     
     /* Animations */
     @keyframes flicker {
@@ -68,17 +69,32 @@ const GlobalStyles = () => (
     }
     .animate-fadeIn { animation: fadeIn 0.5s ease-out forwards; }
 
-    .text-shadow-neon { text-shadow: 0 0 15px rgba(0, 255, 65, 0.6); }
-    .text-shadow-cyan { text-shadow: 0 0 15px rgba(0, 240, 255, 0.6); }
+    .text-shadow-neon { text-shadow: 0 0 20px rgba(0, 255, 65, 0.8), 0 0 40px rgba(0, 255, 65, 0.4); }
+    .text-shadow-cyan { text-shadow: 0 0 20px rgba(0, 240, 255, 0.8), 0 0 40px rgba(0, 240, 255, 0.4); }
     
-    .glow-box { box-shadow: 0 0 20px rgba(0, 255, 65, 0.1); }
-    .glow-box-cyan { box-shadow: 0 0 20px rgba(0, 240, 255, 0.1); }
+    .glow-box { box-shadow: 0 0 30px rgba(0, 255, 65, 0.3), inset 0 0 20px rgba(0, 255, 65, 0.05); }
+    .glow-box-cyan { box-shadow: 0 0 30px rgba(0, 240, 255, 0.3), inset 0 0 20px rgba(0, 240, 255, 0.05); }
     
-    /* CRT Lines Background - Slightly brighter/sharper */
+    /* Authentic CRT Scanlines */
     .crt-lines {
-      background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.1) 50%), linear-gradient(90deg, rgba(255,0,0,0.03), rgba(0,255,0,0.01), rgba(0,0,255,0.03));
-      background-size: 100% 4px, 3px 100%;
+      background: 
+        repeating-linear-gradient(0deg, rgba(0,255,65,0.03) 0px, transparent 1px, transparent 2px, rgba(0,255,65,0.03) 3px),
+        linear-gradient(90deg, rgba(0,255,65,0.02), transparent 50%, rgba(0,255,65,0.02));
+      background-size: 100% 3px, 3px 100%;
     }
+    
+    /* IBM Function Key Border */
+    .ibm-border {
+      border: 2px solid #00FF41;
+      box-shadow: inset 0 0 20px rgba(0, 255, 65, 0.1), 0 0 20px rgba(0, 255, 65, 0.2);
+    }
+    
+    /* Blinking Cursor */
+    @keyframes blink-cursor {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+    .blink-cursor { animation: blink-cursor 1s infinite; }
   `}</style>
 );
 
@@ -567,29 +583,52 @@ const App = () => {
     return (
       <>
         <GlobalStyles />
-        <div className="min-h-screen bg-[#111] text-[#00FF41] font-mono p-8 flex flex-col justify-end pb-32 relative">
+        <div className="min-h-screen bg-black text-[#00FF41] font-mono p-8 flex flex-col justify-center relative">
           <CrtOverlay />
-          <div className="max-w-2xl relative z-10">
-            <div className="flex items-center gap-3 mb-6">
-                <div className="w-4 h-4 bg-[#00FF41] rounded-full animate-bounce"></div>
-                <div className="w-4 h-4 bg-[#00FF41] rounded-full animate-bounce delay-75"></div>
-                <div className="w-4 h-4 bg-[#00FF41] rounded-full animate-bounce delay-150"></div>
+          <div className="max-w-4xl relative z-10 ibm-border p-8 bg-black mx-auto">
+            {/* IBM System Header */}
+            <div className="border-b-2 border-[#00FF41] pb-4 mb-6">
+              <div className="text-xs mb-2">═══════════════════════════════════════════════════════════════════</div>
+              <div className="flex justify-between text-sm">
+                <span>IBM AS/400 SYSTEM</span>
+                <span>SUBSYSTEM: TRIGENT_V3</span>
+                <span>USER: SYSADMIN</span>
+              </div>
+              <div className="text-xs mt-2">═══════════════════════════════════════════════════════════════════</div>
             </div>
-            <p className="text-lg">TRIGENT_OS_V3.0 LOAD SEQUENCE...</p>
-            <div className="w-full bg-[#333] h-1 mt-4 mb-4 rounded-full overflow-hidden">
-                <div className="h-full bg-[#00FF41] animate-[width_2s_ease-out_forwards] w-full origin-left"></div>
+            
+            {/* IPL Boot Messages */}
+            <div className="space-y-2 text-sm mb-6">
+              <p className="text-[#00FF41] font-bold">SYSTEM IPL IN PROGRESS...</p>
+              <p className="opacity-90">  LOADING QSYS.LIB/TRIGENT.SRVPGM ................ OK</p>
+              <p className="opacity-90">  LOADING ASSET MODULES ........................... OK</p>
+              <p className="opacity-90">  CALCULATING VELOCITY BUNDLE .................... OK</p>
+              <p className="opacity-90">  INITIALIZING VISUAL PROTOCOLS .................. OK</p>
+              <p className="opacity-90">  STARTING SUBSYSTEM QINTER ...................... OK</p>
+              <p className="opacity-90">  MOUNTING /QSYS.LIB/TRIGENT.LIB ................. OK</p>
+              <p className="text-[#00F0FF] mt-4 font-bold">  ALL SUBSYSTEMS ACTIVE</p>
             </div>
-            <p className="opacity-80 text-sm">LOADING ASSETS... OK</p>
-            <p className="opacity-80 text-sm">CALCULATING VELOCITY BUNDLE... OK</p>
-            <p className="opacity-80 text-sm text-[#00F0FF]">INITIALIZING VISUAL PROTOCOLS... OK</p>
-            <br/>
-            <p className="animate-pulse">_</p>
+            
+            {/* Progress Bar */}
+            <div className="mb-6">
+              <div className="w-full border-2 border-[#00FF41] h-6 overflow-hidden bg-black">
+                <div className="h-full bg-[#00FF41] animate-[width_2s_ease-out_forwards] w-full origin-left flex items-center justify-center text-black font-bold text-xs">
+                  LOADING...
+                </div>
+              </div>
+            </div>
+            
+            {/* Command Prompt */}
+            <div className="space-y-1 text-sm">
+              <p className="text-[#FFD600]">COMMAND ===> <span className="blink-cursor">█</span></p>
+              <p className="text-xs opacity-70 mt-4">Press F3 to skip initialization sequence</p>
+            </div>
             
             <button 
               onClick={() => setBootSequence(false)}
-              className="mt-8 text-xs text-gray-500 hover:text-white underline cursor-pointer"
+              className="mt-6 text-xs text-[#00FF41] border-2 border-[#00FF41] px-4 py-2 hover:bg-[#00FF41] hover:text-black transition-colors"
             >
-              [SKIP SEQUENCE]
+              [F3] SKIP SEQUENCE
             </button>
           </div>
         </div>
@@ -597,57 +636,79 @@ const App = () => {
     );
   }
 
-  const NavItem = ({ id, label, icon: Icon }) => (
+  const NavItem = ({ id, label, icon: Icon, number }) => (
     <button 
       onClick={() => {
         setActiveTab(id);
         setMobileMenuOpen(false);
       }}
-      className={`w-full text-left px-4 py-3 font-mono text-sm flex items-center gap-3 transition-all border-l-2 rounded-r-lg mb-1 ${activeTab === id ? 'bg-gradient-to-r from-[#00FF41]/20 to-transparent border-[#00FF41] text-[#00FF41] font-bold' : 'border-transparent text-gray-400 hover:text-gray-100 hover:bg-white/5'}`}
+      className={`w-full text-left px-4 py-3 font-mono text-sm flex items-center gap-3 transition-all border-l-4 mb-2 ${activeTab === id ? 'bg-[#00FF41] text-black border-[#00FF41] font-bold shadow-[0_0_15px_rgba(0,255,65,0.4)]' : 'border-[#00FF41]/20 text-[#00FF41]/80 hover:text-[#00FF41] hover:bg-[#00FF41]/10 hover:border-[#00FF41]/40'}`}
     >
-      <Icon size={18} className={activeTab === id ? "text-[#00FF41]" : "text-gray-500"} />
-      {label}
+      <span className="text-xs opacity-70">{number}.</span>
+      <Icon size={16} />
+      <span className="uppercase tracking-wide text-xs">{label}</span>
     </button>
   );
 
   return (
-    <div className="min-h-screen bg-[#121212] text-gray-200 font-sans selection:bg-[#00FF41] selection:text-black overflow-x-hidden pb-24 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#1a1a1a] via-[#121212] to-black">
+    <div className="min-h-screen bg-black text-[#00FF41] font-mono selection:bg-[#00FF41] selection:text-black overflow-x-hidden pb-32">
       <GlobalStyles />
       <CrtOverlay />
 
-      <header className="border-b border-[#333] bg-[#111]/90 backdrop-blur-md sticky top-0 z-40 shadow-lg">
+      <header className="border-b-2 border-[#00FF41] bg-black sticky top-0 z-40 shadow-[0_4px_20px_rgba(0,255,65,0.3)]">
+        {/* IBM System Header Bar */}
+        <div className="bg-[#00FF41] text-black px-6 py-1 font-bold text-xs flex items-center justify-between">
+          <span>═══ IBM i OPERATING SYSTEM ═══</span>
+          <span>TRIGENT LOGISTICS CORP.</span>
+          <span>SESSION: {new Date().toLocaleTimeString()}</span>
+        </div>
+        
         <div className="flex items-center justify-between p-4 px-6 max-w-[1600px] mx-auto">
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-[#00FF41] animate-pulse rounded-full shadow-[0_0_15px_#00FF41]" />
-            <h1 className="font-mono font-bold text-2xl tracking-tighter text-white">TRIGENT <span className="text-[#00FF41] text-shadow-neon">V3</span></h1>
+          <div className="flex items-center gap-4">
+            <div className="w-3 h-3 bg-[#00FF41] animate-pulse shadow-[0_0_15px_#00FF41]" />
+            <h1 className="font-bold text-xl tracking-wider text-[#00FF41] text-shadow-neon">
+              [TRIGENT_V3.0_SYSTEM]
+            </h1>
           </div>
-          <div className="hidden md:flex items-center gap-6 font-mono text-xs text-gray-400">
-            <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-[#00FF41] rounded-full"></div> SYS: ONLINE</span>
-            <span className="text-[#00FF41] font-bold border border-[#00FF41]/30 px-2 py-0.5 rounded bg-[#00FF41]/5">SECURE CONNECTION</span>
+          <div className="hidden md:flex items-center gap-6 text-xs text-[#00FF41]">
+            <span className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-[#00FF41] blink-cursor"></div> 
+              STATUS: ACTIVE
+            </span>
+            <span className="border-2 border-[#00FF41] px-3 py-1 bg-[#00FF41]/10">SECURE CHANNEL</span>
           </div>
-          <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <button className="md:hidden text-[#00FF41]" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
       </header>
 
       <div className="flex flex-col md:flex-row h-full max-w-[1600px] mx-auto">
-        <aside className={`fixed md:sticky top-16 left-0 w-full md:w-72 bg-[#111] border-r border-[#333] h-[calc(100vh-4rem)] z-30 transition-transform duration-300 shadow-xl ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
+        <aside className={`fixed md:sticky top-16 left-0 w-full md:w-72 bg-black border-r-2 border-[#00FF41] h-[calc(100vh-4rem)] z-30 transition-transform duration-300 shadow-[4px_0_20px_rgba(0,255,65,0.2)] ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
           <div className="p-6">
-            <div className="text-xs font-mono text-gray-500 mb-4 uppercase tracking-wider font-bold">Strategic Modules</div>
-            <nav className="space-y-1">
-              <NavItem id="vision" label="Executive Vision" icon={Globe} />
-              <NavItem id="gap" label="The 61% Reality" icon={TrendingUp} />
-              <NavItem id="tech" label="EDI-to-API Bridge" icon={Cpu} />
-              <NavItem id="identity" label="Identity Protocols" icon={PenTool} />
-              <NavItem id="proposal" label="Velocity Blueprint" icon={Briefcase} />
+            {/* AS/400 Menu Header */}
+            <div className="border-2 border-[#00FF41] p-3 mb-6 bg-[#00FF41]/5">
+              <div className="text-xs text-[#00FF41] mb-1 font-bold">MAIN MENU SELECTION</div>
+              <div className="text-[10px] text-[#00FF41]/60">\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550</div>
+            </div>
+            <div className="text-xs font-mono text-[#00FF41]/70 mb-4 uppercase tracking-wider font-bold">Select Option (1-5):</div>
+            <nav className="space-y-2">
+              <NavItem id="vision" label="Executive Vision" icon={Globe} number="1" />
+              <NavItem id="gap" label="The 61% Reality" icon={TrendingUp} number="2" />
+              <NavItem id="tech" label="EDI-to-API Bridge" icon={Cpu} number="3" />
+              <NavItem id="identity" label="Identity Protocols" icon={PenTool} number="4" />
+              <NavItem id="proposal" label="Velocity Blueprint" icon={Briefcase} number="5" />
             </nav>
-            <div className="mt-12 p-5 border border-[#333] rounded-xl bg-[#0a0a0a] relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-16 h-16 bg-[#00FF41] opacity-5 rounded-bl-full transition-transform group-hover:scale-110"></div>
-              <div className="text-[10px] text-gray-500 mb-2 font-bold tracking-widest uppercase">Upcoming Event</div>
-              <div className="text-[#00FF41] font-mono font-bold text-lg mb-1">MANIFEST 2026</div>
-              <div className="text-xs text-gray-400 flex items-center gap-1">
-                <Map size={12} /> Feb 9-11 • Las Vegas
+            
+            {/* IBM Style Info Box */}
+            <div className="mt-12 p-4 border-2 border-[#00FF41] bg-black relative">
+              <div className="text-[9px] text-[#00FF41] mb-2 font-bold tracking-widest">\u250C\u2500 SYSTEM NOTICE \u2500\u2510</div>
+              <div className="text-[#00FF41] font-mono font-bold text-sm mb-1">MANIFEST 2026</div>
+              <div className="text-xs text-[#00FF41]/80 flex items-center gap-1 mb-2">
+                <Map size={10} /> FEB 9-11 \u2022 LAS VEGAS
+              </div>
+              <div className="text-[9px] text-[#00FF41]/60 border-t border-[#00FF41]/30 pt-2 mt-2">
+                TARGET ACQUISITION EVENT
               </div>
             </div>
           </div>
