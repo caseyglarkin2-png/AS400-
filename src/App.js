@@ -22,19 +22,13 @@ import {
   Anchor,
   ZapOff,
   Target,
-  BarChart3,
-  Layers,
-  Clock,
   Award,
   AlertTriangle,
   Code,
   Server,
-  LineChart,
   Boxes,
   Package,
-  Calendar,
-  FileText,
-  GitBranch
+  Calendar
 } from 'lucide-react';
 
 /**
@@ -229,9 +223,9 @@ const EdiTranslator = () => {
   );
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 border-2 border-[#333] bg-[#0a0a0a] h-[550px] overflow-hidden rounded-lg shadow-[0_0_40px_rgba(0,0,0,0.5)]">
-      <div className="p-6 bg-[#111] border-r border-[#333] relative overflow-y-auto custom-scrollbar">
-        <div className="absolute top-4 right-4 text-[#00FF41] text-[10px] font-bold border border-[#00FF41] px-2 py-1 rounded bg-[#00FF41]/10 backdrop-blur-sm">SYSTEM OF RECORD (EDI 204)</div>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 border-4 border-[#00FF41] bg-black h-[550px] overflow-hidden ibm-border">
+      <div className="p-6 bg-black border-r-2 border-[#00FF41] relative overflow-y-auto custom-scrollbar">
+        <div className="absolute top-4 right-4 text-[#00FF41] text-[10px] font-bold border-2 border-[#00FF41] px-2 py-1 bg-black font-mono">SYSTEM OF RECORD (EDI 204)</div>
         <div className="space-y-1 mt-8">
           <EdiLine text="ISA*00* *00* *ZZ*SENDERID..." highlightKey="header" />
           <EdiLine text="GS*SM*SENDERID*RECEIVERID..." highlightKey="header" />
@@ -246,17 +240,17 @@ const EdiTranslator = () => {
           <div className="absolute bottom-8 left-8 right-8">
             <button 
               onClick={() => setTransformed(true)}
-              className="w-full bg-[#00FF41] text-black font-bold font-mono py-4 rounded hover:bg-[#00CC33] hover:shadow-[0_0_20px_rgba(0,255,65,0.4)] transition-all flex items-center justify-center gap-2 group text-base"
+              className="w-full bg-[#00FF41] text-black font-bold font-mono py-4 border-2 border-[#00FF41] hover:bg-[#00CC33] hover:shadow-[0_0_30px_rgba(0,255,65,0.6)] transition-all flex items-center justify-center gap-2 group text-base"
             >
               <Cpu className="w-5 h-5" />
-              INITIATE AXLR8 TRANSLATION
+              [F6] INITIATE AXLR8 TRANSLATION
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
         )}
       </div>
-      <div className="p-6 bg-[#161616] relative overflow-y-auto custom-scrollbar">
-        <div className="absolute top-4 right-4 text-[#00F0FF] text-[10px] font-bold border border-[#00F0FF] px-2 py-1 rounded bg-[#00F0FF]/10 backdrop-blur-sm">SYSTEM OF ENGAGEMENT (REST API)</div>
+      <div className="p-6 bg-black relative overflow-y-auto custom-scrollbar">
+        <div className="absolute top-4 right-4 text-[#00F0FF] text-[10px] font-bold border-2 border-[#00F0FF] px-2 py-1 bg-black font-mono">SYSTEM OF ENGAGEMENT (REST API)</div>
         {transformed ? (
           <div className="mt-8 font-mono text-xs md:text-sm text-gray-200">
             <span className="text-gray-500">{`{`}</span>
@@ -277,15 +271,16 @@ const EdiTranslator = () => {
               <span className="text-[#00F0FF]">"referenceNumbers"</span>: {`{ "orderId": "ORDER123" }`}
             </div>
             <span className="text-gray-500">{`}`}</span>
-            <div className="mt-8 p-4 bg-[#00F0FF]/10 border border-[#00F0FF] rounded text-[#00F0FF] text-xs flex items-center gap-3 shadow-[0_0_15px_rgba(0,240,255,0.15)]">
+            <div className="mt-8 p-4 bg-[#00F0FF]/10 border-2 border-[#00F0FF] text-[#00F0FF] text-xs flex items-center gap-3 shadow-[0_0_25px_rgba(0,240,255,0.3)] font-mono">
               <Activity className="w-5 h-5 animate-pulse" />
-              <span className="font-bold tracking-wide">LIVE API CONNECTION ESTABLISHED</span>
+              <span className="font-bold tracking-wide">&gt; LIVE API CONNECTION ESTABLISHED</span>
             </div>
           </div>
         ) : (
-          <div className="h-full flex flex-col items-center justify-center text-center opacity-40">
-            <Lock className="w-16 h-16 text-gray-400 mb-6" />
-            <div className="font-mono text-gray-400 tracking-wider">WAITING FOR DATA STREAM...</div>
+          <div className="h-full flex flex-col items-center justify-center text-center">
+            <Lock className="w-16 h-16 text-[#00FF41] mb-6 opacity-30" />
+            <div className="font-mono text-[#00FF41] tracking-wider opacity-40">&gt; WAITING FOR DATA STREAM...</div>
+            <div className="font-mono text-[#00FF41] text-xs mt-2 opacity-20 blink-cursor">█</div>
           </div>
         )}
       </div>
@@ -294,87 +289,6 @@ const EdiTranslator = () => {
 };
 
 // 4. LOGO SELECTOR
-const LogoSelector = () => {
-  const [selected, setSelected] = useState(0);
-
-  const options = [
-    {
-      id: 0,
-      name: "The Connector",
-      description: "Code-inspired dot notation. Minimal, modern, bridging entities.",
-      render: () => (
-        <div className="text-3xl md:text-5xl font-bold tracking-tight text-white font-sans">
-          Trigent<span className="text-[#00F0FF] animate-pulse">.</span>Logistics
-        </div>
-      )
-    },
-    {
-      id: 1,
-      name: "The Terminal",
-      description: "Bracketed structure referencing legacy arrays and stability.",
-      render: () => (
-        <div className="text-3xl md:text-5xl font-mono tracking-widest text-[#00FF41]">
-          [TRIGENT]
-        </div>
-      )
-    },
-    {
-      id: 2,
-      name: "The Accelerator",
-      description: "Forward velocity slashes indicating speed and transformation.",
-      render: () => (
-        <div className="text-3xl md:text-5xl font-bold italic tracking-tighter text-white flex items-center gap-2">
-          TRIGENT <span className="text-[#FFD600] not-italic text-4xl">{'///'}</span>
-        </div>
-      )
-    }
-  ];
-
-  return (
-    <div className="space-y-8 animate-fadeIn">
-      <div className="mb-6 border-l-4 border-[#00F0FF] pl-6 bg-gradient-to-r from-[#00F0FF]/10 to-transparent py-2">
-        <h2 className="text-3xl font-bold text-white mb-2">VISUAL IDENTITY PROTOCOLS</h2>
-        <p className="text-gray-300 max-w-2xl font-light">
-          Agency requires optionality. Select a visual directive below to preview the future of the brand.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {options.map((opt, idx) => (
-          <div 
-            key={idx}
-            onClick={() => setSelected(idx)}
-            className={`cursor-pointer p-6 rounded-lg border-2 transition-all duration-300 relative group overflow-hidden ${selected === idx ? 'bg-[#1a1a1a] border-[#00F0FF] shadow-[0_0_25px_rgba(0,240,255,0.2)] scale-[1.02]' : 'bg-[#151515] border-[#333] hover:border-gray-500 hover:bg-[#1a1a1a]'}`}
-          >
-            <div className="absolute top-3 right-3">
-              {selected === idx ? <CheckCircle className="text-[#00F0FF] w-6 h-6 drop-shadow-[0_0_5px_rgba(0,240,255,0.8)]" /> : <div className="w-6 h-6 rounded-full border-2 border-[#444]" />}
-            </div>
-            
-            <div className="h-40 flex items-center justify-center border-b border-[#333] mb-5 bg-black/40 rounded-t-lg">
-              {opt.render()}
-            </div>
-            
-            <h3 className={`font-mono font-bold mb-2 text-lg ${selected === idx ? 'text-[#00F0FF]' : 'text-gray-200'}`}>
-              OPT_0{idx + 1}: {opt.name.toUpperCase()}
-            </h3>
-            <p className="text-sm text-gray-400 font-mono leading-relaxed">
-              {opt.description}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-8 p-5 border border-dashed border-[#555] rounded-lg bg-[#111] flex items-center justify-between shadow-lg">
-        <div className="font-mono text-sm text-gray-400">SELECTION STATUS:</div>
-        <div className="font-mono text-[#00F0FF] font-bold flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[#00F0FF] animate-pulse"></span>
-          {options[selected].name.toUpperCase()} ACTIVE
-        </div>
-      </div>
-    </div>
-  );
-};
-
 // 5. PRICING MODULE (UPDATED WITH V3 SYNTHESIS)
 const PricingModule = () => {
   const [isBundled, setIsBundled] = useState(true);
@@ -1026,8 +940,8 @@ const App = () => {
         <div className="flex items-center justify-between p-4 px-6 max-w-[1600px] mx-auto">
           <div className="flex items-center gap-4">
             <div className="w-3 h-3 bg-[#00FF41] animate-pulse shadow-[0_0_15px_#00FF41]" />
-            <h1 className="font-bold text-xl tracking-wider text-[#00FF41] text-shadow-neon">
-              [TRIGENT_V3.0_SYSTEM]
+            <h1 className="font-bold text-xl tracking-tight text-white font-sans">
+              Trigent<span className="text-[#00F0FF] animate-pulse text-shadow-cyan">.</span>Logistics
             </h1>
           </div>
           <div className="hidden md:flex items-center gap-6 text-xs text-[#00FF41]">
@@ -1082,38 +996,51 @@ const App = () => {
           {activeTab === 'vision' && (
             <div className="space-y-16 animate-fadeIn">
               
-              {/* INTRO HERO */}
-              <div className="border-l-4 border-[#00FF41] pl-8 py-2 relative">
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[#00FF41]/5 to-transparent pointer-events-none -z-10"></div>
-                <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight leading-tight">
+              {/* INTRO HERO - AS/400 STYLE */}
+              <div className="border-2 border-[#00FF41] p-8 bg-black ibm-border relative">
+                <div className="text-[10px] text-[#00FF41] font-mono mb-4 opacity-70">SYSTEM MESSAGE // PRIORITY: HIGH</div>
+                <h2 className="text-4xl md:text-6xl font-bold text-[#00FF41] mb-6 tracking-tight leading-tight font-mono text-shadow-neon">
                   THE CONVERGENCE OF <br/>
-                  <span className="text-[#00FF41] font-mono text-shadow-neon">NOSTALGIA</span> AND <span className="text-[#00F0FF] font-mono text-shadow-cyan">VELOCITY</span>
+                  <span className="text-[#00FF41]">LEGACY</span> AND <span className="text-[#00F0FF] text-shadow-cyan">VELOCITY</span>
                 </h2>
-                <p className="text-xl md:text-2xl text-gray-300 font-light leading-relaxed max-w-3xl">
-                  The path to the future does not require the destruction of the past. It requires a sophisticated bridging of "Legacy Debt" and "Agentic AI".
+                <p className="text-xl md:text-2xl text-[#00FF41] font-mono leading-relaxed max-w-3xl opacity-90">
+                  &gt; The path to the future does not require the destruction of the past. It requires a sophisticated bridging of "Legacy Debt" and "Agentic AI".
                 </p>
+                <div className="mt-4 text-xs text-[#00FF41] font-mono opacity-60">_</div>
               </div>
 
-              {/* TWO SPEED SYSTEM */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="bg-[#1a1a1a] p-8 rounded-xl border border-[#333] hover:border-[#00FF41] transition-colors group shadow-lg">
-                  <div className="w-12 h-12 bg-[#00FF41]/10 rounded-lg flex items-center justify-center mb-6 text-[#00FF41] group-hover:bg-[#00FF41] group-hover:text-black transition-colors">
-                    <Database size={24} />
+              {/* TWO SPEED SYSTEM - IBM TERMINAL STYLE */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+                <div className="bg-black p-8 border-2 border-[#00FF41] hover:shadow-[0_0_30px_rgba(0,255,65,0.3)] transition-all group">
+                  <div className="flex items-center gap-3 mb-6">
+                    <Database className="text-[#00FF41]" size={24} />
+                    <div className="text-[10px] text-[#00FF41] font-mono opacity-70">SYSTEM_TYPE_01</div>
                   </div>
-                  <h3 className="font-mono text-[#00FF41] text-sm mb-4 font-bold tracking-widest">SPEED 1: THE CORE</h3>
-                  <p className="text-gray-300 text-lg mb-6 font-light">Optimized for stability. The "System of Record".</p>
-                  <div className="font-mono text-xs bg-black p-4 rounded border border-[#333] text-[#00FF41] opacity-80 group-hover:opacity-100 transition-opacity">
-                    AS/400 • ORACLE • EDI • MAINFRAME
+                  <h3 className="font-mono text-[#00FF41] text-xl mb-4 font-bold tracking-widest">SPEED 1: THE CORE</h3>
+                  <p className="text-[#00FF41] text-base mb-6 font-mono opacity-90">&gt; Optimized for stability. The "System of Record".</p>
+                  <div className="font-mono text-sm bg-black p-4 border border-[#00FF41] text-[#00FF41]">
+                    ┌─ TECH STACK ─┐<br/>
+                    │ AS/400       │<br/>
+                    │ ORACLE       │<br/>
+                    │ EDI          │<br/>
+                    │ MAINFRAME    │<br/>
+                    └──────────────┘
                   </div>
                 </div>
-                <div className="bg-[#1a1a1a] p-8 rounded-xl border border-[#333] hover:border-[#00F0FF] transition-colors group shadow-lg">
-                  <div className="w-12 h-12 bg-[#00F0FF]/10 rounded-lg flex items-center justify-center mb-6 text-[#00F0FF] group-hover:bg-[#00F0FF] group-hover:text-black transition-colors">
-                    <Zap size={24} />
+                <div className="bg-black p-8 border-2 border-[#00F0FF] hover:shadow-[0_0_30px_rgba(0,240,255,0.3)] transition-all group">
+                  <div className="flex items-center gap-3 mb-6">
+                    <Zap className="text-[#00F0FF]" size={24} />
+                    <div className="text-[10px] text-[#00F0FF] font-mono opacity-70">SYSTEM_TYPE_02</div>
                   </div>
-                  <h3 className="font-mono text-[#00F0FF] text-sm mb-4 font-bold tracking-widest">SPEED 2: THE EDGE</h3>
-                  <p className="text-gray-300 text-lg mb-6 font-light">Optimized for adaptability. The "System of Engagement".</p>
-                  <div className="font-mono text-xs bg-black p-4 rounded border border-[#333] text-[#00F0FF] opacity-80 group-hover:opacity-100 transition-opacity">
-                    REACT • AI AGENTS • API • CLOUD
+                  <h3 className="font-mono text-[#00F0FF] text-xl mb-4 font-bold tracking-widest">SPEED 2: THE EDGE</h3>
+                  <p className="text-[#00F0FF] text-base mb-6 font-mono opacity-90">&gt; Optimized for adaptability. The "System of Engagement".</p>
+                  <div className="font-mono text-sm bg-black p-4 border border-[#00F0FF] text-[#00F0FF]">
+                    ┌─ TECH STACK ─┐<br/>
+                    │ REACT        │<br/>
+                    │ AI AGENTS    │<br/>
+                    │ API          │<br/>
+                    │ CLOUD        │<br/>
+                    └──────────────┘
                   </div>
                 </div>
               </div>
@@ -1126,48 +1053,48 @@ const App = () => {
                    <div className="h-px bg-gray-600 flex-1"></div>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-2 border-[#333] rounded-2xl overflow-hidden shadow-2xl">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-2 border-[#00FF41] overflow-hidden">
                     {/* LEFT: US MARKET */}
-                    <div className="bg-[#151515] p-10 border-b md:border-b-0 md:border-r border-[#333] relative">
-                        <div className="absolute top-4 left-4 text-[#FFD600] font-mono text-xs font-bold bg-[#FFD600]/10 px-2 py-1 rounded">BROWNFIELD REALITY</div>
-                        <h4 className="text-3xl font-bold text-white mb-2 mt-6">US Domestic Market</h4>
-                        <div className="text-gray-400 font-mono text-sm mb-6">"THE VELOCITY OPPORTUNITY"</div>
+                    <div className="bg-black p-10 border-b md:border-b-0 md:border-r-2 border-[#00FF41] relative">
+                        <div className="absolute top-4 left-4 text-[#FFD600] font-mono text-xs font-bold border border-[#FFD600] px-2 py-1 bg-black">BROWNFIELD REALITY</div>
+                        <h4 className="text-3xl font-bold text-[#FFD600] mb-2 mt-6 font-mono">US DOMESTIC MARKET</h4>
+                        <div className="text-[#FFD600] font-mono text-sm mb-6 opacity-70">"THE VELOCITY OPPORTUNITY"</div>
                         
-                        <p className="text-gray-300 mb-6 leading-relaxed text-sm">
+                        <p className="text-[#00FF41] mb-6 leading-relaxed text-sm font-mono">
                             Characterized by 20-30 year old infrastructure and immediate, acute pain points. Companies here don't need a futuristic city; they need to fix their rating engine in 90 days.
                         </p>
                         
-                        <ul className="space-y-3">
-                            <li className="flex items-center gap-3 text-sm text-gray-400">
+                        <ul className="space-y-3 font-mono">
+                            <li className="flex items-center gap-3 text-sm text-[#00FF41]">
                                 <ShieldAlert size={16} className="text-[#FFD600]" /> High Technical Debt
                             </li>
-                            <li className="flex items-center gap-3 text-sm text-gray-400">
+                            <li className="flex items-center gap-3 text-sm text-[#00FF41]">
                                 <DollarSign size={16} className="text-[#FFD600]" /> Fast Sales Cycles (3-6 mo)
                             </li>
-                            <li className="flex items-center gap-3 text-sm text-gray-400">
+                            <li className="flex items-center gap-3 text-sm text-[#00FF41]">
                                 <Zap size={16} className="text-[#FFD600]" /> Needs: Accelerators & Fixes
                             </li>
                         </ul>
                     </div>
 
                     {/* RIGHT: GCC MARKET */}
-                    <div className="bg-[#0f0f0f] p-10 relative">
-                        <div className="absolute top-4 left-4 text-[#00F0FF] font-mono text-xs font-bold bg-[#00F0FF]/10 px-2 py-1 rounded">GREENFIELD AMBITION</div>
-                        <h4 className="text-3xl font-bold text-white mb-2 mt-6">GCC Region</h4>
-                        <div className="text-gray-400 font-mono text-sm mb-6">"THE VISION OPPORTUNITY"</div>
+                    <div className="bg-black p-10 relative">
+                        <div className="absolute top-4 left-4 text-[#00F0FF] font-mono text-xs font-bold border border-[#00F0FF] px-2 py-1 bg-black">GREENFIELD AMBITION</div>
+                        <h4 className="text-3xl font-bold text-[#00F0FF] mb-2 mt-6 font-mono">GCC REGION</h4>
+                        <div className="text-[#00F0FF] font-mono text-sm mb-6 opacity-70">"THE VISION OPPORTUNITY"</div>
                         
-                        <p className="text-gray-300 mb-6 leading-relaxed text-sm">
+                        <p className="text-[#00FF41] mb-6 leading-relaxed text-sm font-mono">
                             Defined by "Logistics 4.0" mega-projects built from the sand up. High value, sovereign wealth backed, but slow moving government cycles.
                         </p>
 
-                        <ul className="space-y-3">
-                            <li className="flex items-center gap-3 text-sm text-gray-400">
+                        <ul className="space-y-3 font-mono">
+                            <li className="flex items-center gap-3 text-sm text-[#00FF41]">
                                 <Anchor size={16} className="text-[#00F0FF]" /> Sovereign AI Mandates
                             </li>
-                            <li className="flex items-center gap-3 text-sm text-gray-400">
+                            <li className="flex items-center gap-3 text-sm text-[#00FF41]">
                                 <Users size={16} className="text-[#00F0FF]" /> Long Sales Cycles (12-24 mo)
                             </li>
-                            <li className="flex items-center gap-3 text-sm text-gray-400">
+                            <li className="flex items-center gap-3 text-sm text-[#00FF41]">
                                 <Globe size={16} className="text-[#00F0FF]" /> Needs: Relationship & Presence
                             </li>
                         </ul>
@@ -1175,16 +1102,16 @@ const App = () => {
                 </div>
               </div>
 
-              {/* FINAL RECOMMENDATION */}
-              <div className="bg-gradient-to-r from-[#00FF41]/10 to-transparent p-1 rounded-2xl">
-                  <div className="bg-[#121212] rounded-xl p-8 border border-[#00FF41]/30">
-                      <h3 className="text-[#00FF41] font-mono font-bold text-lg mb-4 flex items-center gap-2">
-                        <ArrowRight size={20} /> THE STRATEGIC RECOMMENDATION: "US-FIRST PIVOT"
-                      </h3>
-                      <p className="text-gray-300 leading-relaxed max-w-4xl">
-                        Trigent's "Accelerator" model is designed for speed, making it a perfect fit for the US mid-market's need for quick wins. We propose a "Technical Debt Amortization" strategy: selling immediate relief to domestic challengers while using those wins to build the credentials for long-term GCC relationships.
-                      </p>
-                  </div>
+              {/* FINAL RECOMMENDATION - TERMINAL STYLE */}
+              <div className="border-2 border-[#00FF41] p-8 bg-black ibm-border">
+                  <div className="text-[10px] text-[#00FF41] font-mono mb-4 opacity-70">COMMAND RECOMMENDATION // EXEC_LEVEL</div>
+                  <h3 className="text-[#00FF41] font-mono font-bold text-2xl mb-4 flex items-center gap-2 text-shadow-neon">
+                    &gt; THE STRATEGIC RECOMMENDATION: "US-FIRST PIVOT"
+                  </h3>
+                  <p className="text-[#00FF41] leading-relaxed max-w-4xl font-mono opacity-90">
+                    Trigent's "Accelerator" model is designed for speed, making it a perfect fit for the US mid-market's need for quick wins. We propose a "Technical Debt Amortization" strategy: selling immediate relief to domestic challengers while using those wins to build the credentials for long-term GCC relationships.
+                  </p>
+                  <div className="mt-4 text-xs text-[#00FF41] font-mono opacity-60 blink-cursor">█</div>
               </div>
 
             </div>
@@ -1192,12 +1119,13 @@ const App = () => {
 
           {activeTab === 'gap' && (
             <div className="space-y-12 animate-fadeIn">
-              <div>
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">THE MODERNIZATION GAP</h2>
-                <p className="text-xl text-gray-300 max-w-3xl font-light">While 88% of carriers cite AI as a top priority, 61% are trapped in legacy systems. This is not just a statistic; it's a <span className="text-[#EF4444]">market failure</span>.</p>
+              <div className="border-2 border-[#FFD600] p-8 bg-black ibm-border">
+                <div className="text-[10px] text-[#FFD600] font-mono mb-4 opacity-70">ALERT // MARKET ANALYSIS</div>
+                <h2 className="text-3xl md:text-5xl font-bold text-[#FFD600] mb-6 font-mono text-shadow-neon">THE MODERNIZATION GAP</h2>
+                <p className="text-xl text-[#00FF41] max-w-3xl font-mono">&gt; While 88% of carriers cite AI as a top priority, 61% are trapped in legacy systems. This is not just a statistic; it's a <span className="text-[#EF4444] font-bold">MARKET FAILURE</span>.</p>
               </div>
               
-              <div className="bg-[#151515] p-10 rounded-2xl border border-[#333] relative overflow-hidden shadow-2xl">
+              <div className="bg-black p-10 border-2 border-[#00FF41] relative overflow-hidden">
                 {/* Background Grid Pattern */}
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
                 
@@ -1220,21 +1148,21 @@ const App = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="bg-[#1a1a1a] p-6 rounded-xl border border-[#333]">
-                      <h4 className="text-white font-bold mb-2 flex items-center gap-2">
-                          <ZapOff className="text-gray-500" /> The Consequence
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+                  <div className="bg-black p-6 border-2 border-[#EF4444]">
+                      <h4 className="text-[#EF4444] font-bold mb-2 flex items-center gap-2 font-mono text-sm">
+                          <ZapOff size={16} /> THE CONSEQUENCE
                       </h4>
-                      <p className="text-sm text-gray-400">
-                          "Swivel Chair Integration" — hiring staff to manually type data from one screen to another. This destroys margins and data integrity.
+                      <p className="text-sm text-[#00FF41] font-mono">
+                          &gt; "Swivel Chair Integration" — hiring staff to manually type data from one screen to another. This destroys margins and data integrity.
                       </p>
                   </div>
-                  <div className="bg-[#1a1a1a] p-6 rounded-xl border border-[#333]">
-                      <h4 className="text-white font-bold mb-2 flex items-center gap-2">
-                          <ArrowRight className="text-[#00FF41]" /> The Trigent Solution
+                  <div className="bg-black p-6 border-2 border-[#00FF41]">
+                      <h4 className="text-[#00FF41] font-bold mb-2 flex items-center gap-2 font-mono text-sm">
+                          <ArrowRight size={16} /> THE TRIGENT SOLUTION
                       </h4>
-                      <p className="text-sm text-gray-400">
-                          We don't ask you to replace the mainframe. We build the <strong>API Bridge</strong> that allows it to talk to the future.
+                      <p className="text-sm text-[#00FF41] font-mono">
+                          &gt; We don't ask you to replace the mainframe. We build the <strong className="text-shadow-neon">API BRIDGE</strong> that allows it to talk to the future.
                       </p>
                   </div>
               </div>
@@ -1242,16 +1170,95 @@ const App = () => {
           )}
 
           {activeTab === 'tech' && (
-            <div className="animate-fadeIn">
-              <div className="mb-8">
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">THE TRANSLATION LAYER</h2>
-                <p className="text-xl text-gray-300 font-light">Bridging the gap between EDI 204 and modern REST JSON.</p>
+            <div className="animate-fadeIn space-y-8">
+              <div className="border-2 border-[#00F0FF] p-8 bg-black ibm-border">
+                <div className="text-[10px] text-[#00F0FF] font-mono mb-4 opacity-70">TECHNICAL DEMO // AXLR8_BRIDGE</div>
+                <h2 className="text-3xl md:text-5xl font-bold text-[#00F0FF] mb-4 font-mono text-shadow-cyan">THE TRANSLATION LAYER</h2>
+                <p className="text-xl text-[#00FF41] font-mono">&gt; Bridging the gap between EDI 204 and modern REST JSON in real-time.</p>
+                <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                  <div>
+                    <div className="text-2xl font-bold text-[#00FF41] font-mono">~100ms</div>
+                    <div className="text-xs text-gray-400 font-mono">Translation Time</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-[#00FF41] font-mono">99.9%</div>
+                    <div className="text-xs text-gray-400 font-mono">Accuracy Rate</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-[#00FF41] font-mono">24/7</div>
+                    <div className="text-xs text-gray-400 font-mono">Uptime SLA</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-[#00FF41] font-mono">$0</div>
+                    <div className="text-xs text-gray-400 font-mono">ERP Changes</div>
+                  </div>
+                </div>
               </div>
               <EdiTranslator />
+              <div className="bg-black border-2 border-[#00FF41] p-8 ibm-border">
+                <div className="text-xs text-[#00FF41] font-mono mb-4 font-bold tracking-widest">VALUE PROPOSITION</div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="text-[#00FF41] font-mono font-bold mb-2">WITHOUT AXLR8 BRIDGE:</h4>
+                    <ul className="text-sm text-gray-300 space-y-2 font-mono">
+                      <li className="flex items-start gap-2"><span className="text-[#EF4444]">✗</span> Months-long ERP replacement projects</li>
+                      <li className="flex items-start gap-2"><span className="text-[#EF4444]">✗</span> $500K+ implementation costs</li>
+                      <li className="flex items-start gap-2"><span className="text-[#EF4444]">✗</span> High operational risk during migration</li>
+                      <li className="flex items-start gap-2"><span className="text-[#EF4444]">✗</span> Lost revenue from downtime</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-[#00FF41] font-mono font-bold mb-2">WITH AXLR8 BRIDGE:</h4>
+                    <ul className="text-sm text-[#00FF41] space-y-2 font-mono">
+                      <li className="flex items-start gap-2"><span className="text-[#00FF41]">✓</span> 90-day implementation timeline</li>
+                      <li className="flex items-start gap-2"><span className="text-[#00FF41]">✓</span> Fixed-price accelerator model</li>
+                      <li className="flex items-start gap-2"><span className="text-[#00FF41]">✓</span> Zero downtime, zero ERP changes</li>
+                      <li className="flex items-start gap-2"><span className="text-[#00FF41]">✓</span> Immediate API connectivity</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
 
-          {activeTab === 'identity' && <LogoSelector />}
+          {activeTab === 'identity' && (
+            <div className="space-y-8 animate-fadeIn">
+              <div className="border-l-4 border-[#00F0FF] pl-6 bg-gradient-to-r from-[#00F0FF]/10 to-transparent py-2">
+                <h2 className="text-3xl font-bold text-white mb-2">VISUAL IDENTITY PROTOCOL</h2>
+                <p className="text-gray-300 max-w-2xl font-light">
+                  The chosen identity represents the bridge between legacy and future—a simple dot notation connecting two worlds.
+                </p>
+              </div>
+
+              <div className="bg-black border-4 border-[#00FF41] p-16 text-center ibm-border">
+                <div className="text-[10px] text-[#00FF41] font-mono mb-8 opacity-70">CORPORATE IDENTIFIER // ACTIVE</div>
+                <div className="text-5xl md:text-7xl font-bold tracking-tight text-white font-sans mb-8">
+                  Trigent<span className="text-[#00F0FF] animate-pulse text-shadow-cyan">.</span>Logistics
+                </div>
+                <div className="text-sm text-[#00FF41] font-mono mb-8 opacity-80">
+                  &gt; THE CONNECTOR: Code-inspired dot notation. Minimal, modern, bridging entities.
+                </div>
+                <div className="inline-block border-2 border-[#00FF41] px-6 py-3 bg-[#00FF41]/10">
+                  <div className="text-xs text-[#00FF41] font-mono">STATUS: APPROVED // DEPLOYED</div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-black border-2 border-[#00FF41]/30 p-6">
+                  <div className="text-xs text-[#00FF41] font-mono mb-3 font-bold">RATIONALE</div>
+                  <p className="text-sm text-gray-300 font-mono">Represents the technical bridge between legacy systems and modern APIs—the dot as the connection point.</p>
+                </div>
+                <div className="bg-black border-2 border-[#00FF41]/30 p-6">
+                  <div className="text-xs text-[#00FF41] font-mono mb-3 font-bold">APPLICATIONS</div>
+                  <p className="text-sm text-gray-300 font-mono">Website headers, business cards, terminal displays, technical documentation, API endpoints.</p>
+                </div>
+                <div className="bg-black border-2 border-[#00FF41]/30 p-6">
+                  <div className="text-xs text-[#00FF41] font-mono mb-3 font-bold">MESSAGING</div>
+                  <p className="text-sm text-gray-300 font-mono">Clean, professional, developer-friendly. Appeals to technical decision-makers.</p>
+                </div>
+              </div>
+            </div>
+          )}
           
           {activeTab === 'cases' && <CaseStudies />}
           
