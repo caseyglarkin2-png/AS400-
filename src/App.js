@@ -318,7 +318,7 @@ const PricingModule = () => {
              <span className="bg-[#FFD600] text-black text-xs font-bold px-2 py-1 rounded font-mono shadow-[0_0_10px_#FFD600]">CONFIDENTIAL</span>
              <span className="text-[#FFD600] text-xs font-mono tracking-widest font-bold">MISSION DIRECTIVE</span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 italic uppercase tracking-tight">
+          <h2 className="text-4xl md:text-6xl font-mono font-bold text-white mb-6 italic uppercase tracking-tight">
             Let The Truckers <span className="text-[#00FF41] text-shadow-neon">Truck</span>
           </h2>
           <p className="text-gray-300 max-w-2xl font-mono text-sm md:text-base border-l-4 border-[#00FF41] pl-6 leading-relaxed">
@@ -551,7 +551,7 @@ const CaseStudies = () => {
   return (
     <div className="space-y-8 animate-fadeIn">
       <div className="border-l-4 border-[#00F0FF] pl-6 bg-gradient-to-r from-[#00F0FF]/10 to-transparent py-2">
-        <h2 className="text-3xl font-bold text-white mb-2">OPERATIONAL EVIDENCE</h2>
+        <h2 className="text-3xl font-mono font-bold text-white mb-2">OPERATIONAL EVIDENCE</h2>
         <p className="text-[#00FF41] max-w-2xl font-mono opacity-80">
           &gt; Moving beyond theory: Three case studies proving Trigent delivers measurable ROI in the messy reality of US logistics.
         </p>
@@ -584,7 +584,7 @@ const CaseStudies = () => {
               <Icon size={32} className="text-black" />
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-white">{activeData.title}</h3>
+              <h3 className="text-2xl font-mono font-bold text-white">{activeData.title}</h3>
               <p className="text-sm font-mono text-[#00F0FF]">{activeData.subtitle}</p>
             </div>
           </div>
@@ -673,7 +673,7 @@ const ManifestCTA = () => {
           <Calendar className="w-12 h-12 text-[#FFD600]" />
           <div>
             <div className="text-xs text-[#FFD600] font-bold tracking-widest">UPCOMING EVENT</div>
-            <h2 className="text-4xl font-bold text-white">MANIFEST 2026</h2>
+            <h2 className="text-4xl font-mono font-bold text-white">MANIFEST 2026</h2>
           </div>
         </div>
 
@@ -681,22 +681,22 @@ const ManifestCTA = () => {
           <div className="bg-black/50 border-2 border-[#FFD600] p-6">
             <Calendar className="w-8 h-8 text-[#FFD600] mb-3" />
             <div className="text-xs text-gray-400 mb-1">DATES</div>
-            <div className="text-xl font-bold text-white">Feb 9-11, 2026</div>
+            <div className="text-xl font-mono font-bold text-white">Feb 9-11, 2026</div>
           </div>
           <div className="bg-black/50 border-2 border-[#FFD600] p-6">
             <Map className="w-8 h-8 text-[#FFD600] mb-3" />
             <div className="text-xs text-gray-400 mb-1">VENUE</div>
-            <div className="text-xl font-bold text-white">The Venetian, Las Vegas</div>
+            <div className="text-xl font-mono font-bold text-white">The Venetian, Las Vegas</div>
           </div>
           <div className="bg-black/50 border-2 border-[#FFD600] p-6">
             <Users className="w-8 h-8 text-[#FFD600] mb-3" />
             <div className="text-xs text-gray-400 mb-1">ATTENDEES</div>
-            <div className="text-xl font-bold text-white">7,200+ Decision Makers</div>
+            <div className="text-xl font-mono font-bold text-white">7,200+ Decision Makers</div>
           </div>
         </div>
 
         <div className="bg-[#FFD600]/10 border-2 border-[#FFD600] p-8 mb-8">
-          <h3 className="text-2xl font-bold text-[#FFD600] mb-4">
+          <h3 className="text-2xl font-mono font-bold text-[#FFD600] mb-4">
             EXCLUSIVE ROUNDTABLE: "The 61% Reality"
           </h3>
           <p className="text-[#00FF41] mb-6 leading-relaxed font-mono opacity-80">
@@ -785,7 +785,7 @@ const TargetMatrix = () => {
   return (
     <div className="space-y-8 animate-fadeIn">
       <div className="border-l-4 border-[#FFD600] pl-6 bg-gradient-to-r from-[#FFD600]/10 to-transparent py-2">
-        <h2 className="text-3xl font-bold text-white mb-2">MANIFEST 2026: TARGET ACQUISITION</h2>
+        <h2 className="text-3xl font-mono font-bold text-white mb-2">MANIFEST 2026: TARGET ACQUISITION</h2>
         <p className="text-[#00FF41] max-w-2xl font-mono opacity-80">
           &gt; Strategic "Must-Win" targets based on market analysis and partnership potential.
         </p>
@@ -1102,15 +1102,181 @@ const App = () => {
                 </div>
               </div>
 
+              {/* MARKET FORCES ANALYSIS */}
+              <div className="space-y-0">
+                <div className="flex items-center gap-3 mb-8">
+                   <div className="h-px bg-gray-600 flex-1"></div>
+                   <h3 className="text-gray-400 font-mono text-sm tracking-widest uppercase font-bold">Market Forces: The Convergence Imperative</h3>
+                   <div className="h-px bg-gray-600 flex-1"></div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-2 border-[#00F0FF]">
+                  <div className="bg-black p-8 border-b md:border-b-0 md:border-r-2 border-[#00F0FF]">
+                    <div className="text-[10px] text-[#00F0FF] font-mono mb-4 font-bold">FORCE_01</div>
+                    <h4 className="text-xl font-mono font-bold text-[#00F0FF] mb-4">TECHNICAL DEBT COMPOUND INTEREST</h4>
+                    <p className="text-[#00FF41] text-sm font-mono leading-relaxed mb-4">
+                      &gt; Every month legacy systems remain unaddressed, the cost of modernization increases exponentially. Not linearly—exponentially.
+                    </p>
+                    <ul className="space-y-2 text-xs font-mono text-[#00FF41] opacity-80">
+                      <li>&gt; Staff attrition of legacy skills</li>
+                      <li>&gt; Integration complexity growth</li>
+                      <li>&gt; Opportunity cost of AI adoption</li>
+                      <li>&gt; Competitive disadvantage acceleration</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-black p-8 border-b md:border-b-0 md:border-r-2 border-[#00F0FF]">
+                    <div className="text-[10px] text-[#00F0FF] font-mono mb-4 font-bold">FORCE_02</div>
+                    <h4 className="text-xl font-mono font-bold text-[#00F0FF] mb-4">AI DISRUPTION TIMELINE</h4>
+                    <p className="text-[#00FF41] text-sm font-mono leading-relaxed mb-4">
+                      &gt; Carriers who bridge to AI in 2025-2026 will control pricing power. Those who don't will face margin compression.
+                    </p>
+                    <ul className="space-y-2 text-xs font-mono text-[#00FF41] opacity-80">
+                      <li>&gt; Autonomous dispatch emerging</li>
+                      <li>&gt; Predictive capacity optimization</li>
+                      <li>&gt; Dynamic pricing algorithms</li>
+                      <li>&gt; 24/7 customer service agents</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-black p-8">
+                    <div className="text-[10px] text-[#00F0FF] font-mono mb-4 font-bold">FORCE_03</div>
+                    <h4 className="text-xl font-mono font-bold text-[#00F0FF] mb-4">VENDOR CONSOLIDATION WAVE</h4>
+                    <p className="text-[#00FF41] text-sm font-mono leading-relaxed mb-4">
+                      &gt; Traditional TMS vendors are acquiring AI capabilities. The window to choose best-of-breed vs all-in-one is closing.
+                    </p>
+                    <ul className="space-y-2 text-xs font-mono text-[#00FF41] opacity-80">
+                      <li>&gt; McLeod vs TMW vs MercuryGate</li>
+                      <li>&gt; Oracle acquiring AI startups</li>
+                      <li>&gt; SAP/Manhattan positioning</li>
+                      <li>&gt; Platform lock-in risk rising</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* DECISION FRAMEWORK */}
+              <div className="border-2 border-[#FFD600] p-8 bg-black">
+                <div className="text-[10px] text-[#FFD600] font-mono mb-4 opacity-70">DECISION_MATRIX // STRATEGIC_OPTIONS</div>
+                <h3 className="text-2xl font-mono font-bold text-[#FFD600] mb-6">THE THREE PATHS FORWARD</h3>
+                
+                <div className="space-y-6">
+                  <div className="flex gap-4 p-4 bg-black border border-[#EF4444] hover:border-[#EF4444] hover:shadow-[0_0_20px_rgba(239,68,68,0.2)] transition-all">
+                    <div className="text-[#EF4444] font-mono font-bold">PATH_A:</div>
+                    <div>
+                      <div className="text-white font-mono font-bold mb-2">RIP & REPLACE</div>
+                      <div className="text-[#00FF41] text-sm font-mono">Full platform migration to modern TMS. 18-36 month implementation, $2-5M investment, high business disruption risk.</div>
+                      <div className="text-[#EF4444] text-xs font-mono mt-2">⚠ RISK: Operations freeze, staff revolt, go-live disasters</div>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4 p-4 bg-black border border-gray-600 hover:border-gray-400 hover:shadow-[0_0_20px_rgba(156,163,175,0.2)] transition-all">
+                    <div className="text-gray-400 font-mono font-bold">PATH_B:</div>
+                    <div>
+                      <div className="text-white font-mono font-bold mb-2">STATUS QUO MAINTENANCE</div>
+                      <div className="text-[#00FF41] text-sm font-mono">Keep current systems running, patch as needed. Low short-term cost but accumulating technical debt and competitive erosion.</div>
+                      <div className="text-[#FFD600] text-xs font-mono mt-2">⚠ RISK: Death by a thousand cuts, market irrelevance by 2027</div>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4 p-4 bg-black border-2 border-[#00FF41] hover:border-[#00FF41] hover:shadow-[0_0_30px_rgba(0,255,65,0.4)] transition-all">
+                    <div className="text-[#00FF41] font-mono font-bold">PATH_C:</div>
+                    <div>
+                      <div className="text-white font-mono font-bold mb-2">DUAL-SPEED BRIDGE → VELOCITY 3.0</div>
+                      <div className="text-[#00FF41] text-sm font-mono">Keep core stable, add edge innovation layer. 8-12 week accelerators, $300-500K phases, immediate ROI delivery.</div>
+                      <div className="text-[#00FF41] text-xs font-mono mt-2">✓ ADVANTAGE: Continuous operation + innovation, proven in PFNZ case</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* COMPETITIVE LANDSCAPE */}
+              <div className="space-y-0">
+                <div className="flex items-center gap-3 mb-8">
+                   <div className="h-px bg-gray-600 flex-1"></div>
+                   <h3 className="text-gray-400 font-mono text-sm tracking-widest uppercase font-bold">Competitive Positioning Analysis</h3>
+                   <div className="h-px bg-gray-600 flex-1"></div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-2 border-[#00FF41]">
+                  <div className="bg-black p-8 border-b md:border-b-0 md:border-r-2 border-[#00FF41]">
+                    <h4 className="text-lg font-mono font-bold text-[#FFD600] mb-4">TRADITIONAL INTEGRATORS</h4>
+                    <p className="text-[#00FF41] text-sm font-mono mb-4">&gt; Accenture, Deloitte, Infosys model:</p>
+                    <ul className="space-y-2 text-xs font-mono text-[#00FF41] opacity-80">
+                      <li>• $5-20M engagements</li>
+                      <li>• 24+ month timelines</li>
+                      <li>• 50-200 person teams</li>
+                      <li>• Waterfall methodology</li>
+                      <li className="text-[#EF4444]">✗ Too slow for mid-market velocity</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-black p-8">
+                    <h4 className="text-lg font-mono font-bold text-[#00F0FF] mb-4">VELOCITY 3.0 APPROACH</h4>
+                    <p className="text-[#00FF41] text-sm font-mono mb-4">&gt; Trigent Accelerator model:</p>
+                    <ul className="space-y-2 text-xs font-mono text-[#00FF41] opacity-80">
+                      <li>• $300-500K accelerators</li>
+                      <li>• 8-12 week sprints</li>
+                      <li>• 5-8 person squads</li>
+                      <li>• Agile + pre-built modules</li>
+                      <li className="text-[#00FF41]">✓ Speed matched to market need</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-2 border-t-0 border-[#00FF41]">
+                  <div className="bg-black p-8 border-b md:border-b-0 md:border-r-2 border-[#00FF41]">
+                    <h4 className="text-lg font-mono font-bold text-[#FFD600] mb-4">AI-NATIVE STARTUPS</h4>
+                    <p className="text-[#00FF41] text-sm font-mono mb-4">&gt; Flock Freight, Convoy, Turvo model:</p>
+                    <ul className="space-y-2 text-xs font-mono text-[#00FF41] opacity-80">
+                      <li>• Modern tech stack only</li>
+                      <li>• No legacy integration depth</li>
+                      <li>• VC-funded burn rates</li>
+                      <li>• Point solution focus</li>
+                      <li className="text-[#EF4444]">✗ Can't bridge AS/400 reality</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-black p-8">
+                    <h4 className="text-lg font-mono font-bold text-[#00F0FF] mb-4">VELOCITY 3.0 ADVANTAGE</h4>
+                    <p className="text-[#00FF41] text-sm font-mono mb-4">&gt; Trigent dual-speed capability:</p>
+                    <ul className="space-y-2 text-xs font-mono text-[#00FF41] opacity-80">
+                      <li>• EDI 204/214 native fluency</li>
+                      <li>• AS/400 + REST API bridges</li>
+                      <li>• Profitable business model</li>
+                      <li>• Platform + accelerators</li>
+                      <li className="text-[#00FF41]">✓ Only vendor in both worlds</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
               {/* FINAL RECOMMENDATION - TERMINAL STYLE */}
               <div className="border-2 border-[#00FF41] p-8 bg-black ibm-border">
                   <div className="text-[10px] text-[#00FF41] font-mono mb-4 opacity-70">COMMAND RECOMMENDATION // EXEC_LEVEL</div>
                   <h3 className="text-[#00FF41] font-mono font-bold text-2xl mb-4 flex items-center gap-2 text-shadow-neon">
                     &gt; THE STRATEGIC RECOMMENDATION: "US-FIRST PIVOT"
                   </h3>
-                  <p className="text-[#00FF41] leading-relaxed max-w-4xl font-mono opacity-90">
+                  <p className="text-[#00FF41] leading-relaxed max-w-4xl font-mono opacity-90 mb-6">
                     Trigent's "Accelerator" model is designed for speed, making it a perfect fit for the US mid-market's need for quick wins. We propose a "Technical Debt Amortization" strategy: selling immediate relief to domestic challengers while using those wins to build the credentials for long-term GCC relationships.
                   </p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                    <div className="p-4 bg-black border border-[#00FF41]">
+                      <div className="text-[10px] text-[#00FF41] font-mono mb-2 opacity-70">PHASE_01</div>
+                      <div className="text-white font-mono font-bold mb-2">PROVE VALUE</div>
+                      <div className="text-[#00FF41] text-xs font-mono">3-5 US mid-market wins. Build case study portfolio. 2025-Q1 to Q3.</div>
+                    </div>
+                    <div className="p-4 bg-black border border-[#00FF41]">
+                      <div className="text-[10px] text-[#00FF41] font-mono mb-2 opacity-70">PHASE_02</div>
+                      <div className="text-white font-mono font-bold mb-2">SCALE VELOCITY</div>
+                      <div className="text-[#00FF41] text-xs font-mono">10+ accelerator deployments. Revenue $3-5M. 2025-Q4 to 2026-Q2.</div>
+                    </div>
+                    <div className="p-4 bg-black border border-[#00FF41]">
+                      <div className="text-[10px] text-[#00FF41] font-mono mb-2 opacity-70">PHASE_03</div>
+                      <div className="text-white font-mono font-bold mb-2">GCC CREDIBILITY</div>
+                      <div className="text-[#00FF41] text-xs font-mono">Enter GCC with proven US track record. Target Saudi/UAE. 2026-Q3+.</div>
+                    </div>
+                  </div>
                   <div className="mt-4 text-xs text-[#00FF41] font-mono opacity-60 blink-cursor">█</div>
               </div>
 
