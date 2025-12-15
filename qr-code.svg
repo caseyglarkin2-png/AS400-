@@ -1,0 +1,11 @@
+<!-- Placeholder for QR code - will be added by user -->
+<!-- This QR code drives traffic to https://caseyglarkin2-png.github.io/AS400- -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#000000"/>
+  <text x="200" y="200" font-family="monospace" font-size="20" fill="#00FF41" text-anchor="middle">
+    QR CODE PLACEHOLDER
+  </text>
+  <text x="200" y="230" font-family="monospace" font-size="12" fill="#00FF41" text-anchor="middle">
+    Scan to visit Trigent Velocity 3.0
+  </text>
+</svg>
