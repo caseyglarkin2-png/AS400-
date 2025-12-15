@@ -178,7 +178,7 @@ const DispatchRadio = () => {
       <div className="fixed bottom-0 left-0 right-0 h-24 bg-[#111] border-t-2 border-[#333] flex items-center px-4 md:px-8 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] z-[50] font-mono backdrop-blur-sm bg-opacity-95">
         <div className="flex items-center gap-6 w-full max-w-6xl mx-auto">
           <div className="flex flex-col items-center gap-1">
-            <div className="text-[10px] text-gray-400 tracking-widest uppercase font-bold">Channel</div>
+            <div className="text-[10px] font-mono text-gray-400 tracking-widest uppercase font-bold">Channel</div>
             <button 
               onClick={toggleTransmission}
               className={`w-12 h-16 bg-[#222] rounded border-2 relative shadow-lg transition-all hover:scale-105 active:scale-95 ${isTransmissionOpen ? 'border-[#00FF41] shadow-[0_0_15px_rgba(0,255,65,0.4)]' : 'border-[#555]'}`}
@@ -190,8 +190,8 @@ const DispatchRadio = () => {
           <div className="flex-1 bg-black border border-[#444] rounded p-3 h-16 flex items-center justify-between relative overflow-hidden group hover:border-[#666] transition-colors">
             <div className="absolute inset-0 bg-[#00FF41] opacity-[0.03] pointer-events-none" />
             <div className="flex flex-col z-10 overflow-hidden pl-2">
-              <span className="text-[10px] text-[#00FF41] font-bold opacity-90">FREQ: 98.4 MHZ // TRIGENT DISPATCH</span>
-              <div className="text-white font-bold tracking-wider truncate text-sm md:text-base flex items-center gap-2">
+              <span className="text-[10px] font-mono text-[#00FF41] font-bold opacity-90">FREQ: 98.4 MHZ // TRIGENT DISPATCH</span>
+              <div className="text-white font-mono font-bold tracking-wider truncate text-sm md:text-base flex items-center gap-2">
                 {isTransmissionOpen ? <><span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"/> LIVE SIGNAL ESTABLISHED</> : "TOGGLE CHANNEL TO LISTEN"}
               </div>
             </div>
@@ -451,7 +451,7 @@ const PricingModule = () => {
         
         <div className="mb-6 md:mb-0 relative z-10">
            <h4 className="font-mono text-sm text-gray-300 uppercase tracking-widest mb-2 font-bold">Estimated Annual Investment</h4>
-           <div className="text-xs text-gray-400">Includes all one-time fees + 12 months retainer</div>
+           <div className="text-xs font-mono text-gray-400">Includes all one-time fees + 12 months retainer</div>
         </div>
 
         <div className="flex items-center gap-12 relative z-10">
@@ -552,8 +552,8 @@ const CaseStudies = () => {
     <div className="space-y-8 animate-fadeIn">
       <div className="border-l-4 border-[#00F0FF] pl-6 bg-gradient-to-r from-[#00F0FF]/10 to-transparent py-2">
         <h2 className="text-3xl font-bold text-white mb-2">OPERATIONAL EVIDENCE</h2>
-        <p className="text-gray-300 max-w-2xl font-light">
-          Moving beyond theory: Three case studies proving Trigent delivers measurable ROI in the messy reality of US logistics.
+        <p className="text-[#00FF41] max-w-2xl font-mono opacity-80">
+          &gt; Moving beyond theory: Three case studies proving Trigent delivers measurable ROI in the messy reality of US logistics.
         </p>
       </div>
 
@@ -570,7 +570,7 @@ const CaseStudies = () => {
             }`}
           >
             <div className="text-xs font-mono mb-1">CASE_0{idx + 1}</div>
-            <div className="text-sm font-bold">{c.title}</div>
+            <div className="text-sm font-mono font-bold">{c.title}</div>
           </button>
         ))}
       </div>
@@ -585,7 +585,7 @@ const CaseStudies = () => {
             </div>
             <div>
               <h3 className="text-2xl font-bold text-white">{activeData.title}</h3>
-              <p className="text-sm text-[#00F0FF]">{activeData.subtitle}</p>
+              <p className="text-sm font-mono text-[#00F0FF]">{activeData.subtitle}</p>
             </div>
           </div>
 
@@ -594,14 +594,14 @@ const CaseStudies = () => {
               <div className="text-xs text-[#FFD600] font-bold mb-2 flex items-center gap-2">
                 <AlertTriangle size={14} /> THE PROBLEM
               </div>
-              <p className="text-gray-300 text-sm">{activeData.problem}</p>
+              <p className="text-[#00FF41] text-sm font-mono opacity-80">{activeData.problem}</p>
             </div>
 
             <div>
               <div className="text-xs text-[#00FF41] font-bold mb-2 flex items-center gap-2">
                 <Zap size={14} /> THE TRIGENT SOLUTION
               </div>
-              <p className="text-gray-300 text-sm">{activeData.solution}</p>
+              <p className="text-[#00FF41] text-sm font-mono opacity-80">{activeData.solution}</p>
             </div>
 
             <div>
@@ -625,7 +625,7 @@ const CaseStudies = () => {
               {activeData.metrics.map((metric, idx) => (
                 <div key={idx} className="relative">
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm text-gray-300">{metric.label}</span>
+                    <span className="text-sm text-[#00FF41] font-mono opacity-80">{metric.label}</span>
                     <span className="text-2xl font-bold font-mono" style={{ color: metric.color }}>
                       {metric.value}
                     </span>
@@ -647,8 +647,8 @@ const CaseStudies = () => {
 
           <div className="bg-[#00FF41]/10 border-2 border-[#00FF41] p-6">
             <div className="text-xs text-[#00FF41] font-bold mb-3 tracking-widest">STRATEGIC RELEVANCE</div>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              This case study proves Trigent understands the {activeCase === 0 ? 'Yield Management' : activeCase === 1 ? 'Decentralized Brokerage' : 'InsurTech/IoT'} opportunity. 
+            <p className="text-[#00FF41] text-sm leading-relaxed font-mono opacity-80">
+              &gt; This case study proves Trigent understands the {activeCase === 0 ? 'Yield Management' : activeCase === 1 ? 'Decentralized Brokerage' : 'InsurTech/IoT'} opportunity. 
               It demonstrates our ability to deliver enterprise-grade solutions at mid-market velocity.
             </p>
           </div>
@@ -699,8 +699,8 @@ const ManifestCTA = () => {
           <h3 className="text-2xl font-bold text-[#FFD600] mb-4">
             EXCLUSIVE ROUNDTABLE: "The 61% Reality"
           </h3>
-          <p className="text-gray-300 mb-6 leading-relaxed">
-            Join Trigent for an intimate discussion on bridging the gap between Legacy Debt and Agentic AI. 
+          <p className="text-[#00FF41] mb-6 leading-relaxed font-mono opacity-80">
+            &gt; Join Trigent for an intimate discussion on bridging the gap between Legacy Debt and Agentic AI. 
             No pitch decks. No vendor hype. Just honest dialogue about the technical debt crisis paralyzing 
             American logistics—and pragmatic pathways forward.
           </p>
@@ -786,8 +786,8 @@ const TargetMatrix = () => {
     <div className="space-y-8 animate-fadeIn">
       <div className="border-l-4 border-[#FFD600] pl-6 bg-gradient-to-r from-[#FFD600]/10 to-transparent py-2">
         <h2 className="text-3xl font-bold text-white mb-2">MANIFEST 2026: TARGET ACQUISITION</h2>
-        <p className="text-gray-300 max-w-2xl font-light">
-          Strategic "Must-Win" targets based on market analysis and partnership potential.
+        <p className="text-[#00FF41] max-w-2xl font-mono opacity-80">
+          &gt; Strategic "Must-Win" targets based on market analysis and partnership potential.
         </p>
       </div>
 
@@ -813,7 +813,7 @@ const TargetMatrix = () => {
 
                 <div className="md:col-span-3">
                   <div className="text-xs text-gray-400 mb-1">OPPORTUNITY</div>
-                  <div className="text-sm text-gray-300">{target.opportunity}</div>
+                  <div className="text-sm text-[#00FF41] font-mono opacity-80">{target.opportunity}</div>
                 </div>
 
                 <div className="md:col-span-4">
@@ -940,7 +940,7 @@ const App = () => {
         <div className="flex items-center justify-between p-4 px-6 max-w-[1600px] mx-auto">
           <div className="flex items-center gap-4">
             <div className="w-3 h-3 bg-[#00FF41] animate-pulse shadow-[0_0_15px_#00FF41]" />
-            <h1 className="font-bold text-xl tracking-tight text-white font-sans">
+            <h1 className="font-bold text-xl tracking-wider text-white font-mono">
               Trigent<span className="text-[#00F0FF] animate-pulse text-shadow-cyan">.</span>Logistics
             </h1>
           </div>
@@ -1200,7 +1200,7 @@ const App = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <h4 className="text-[#00FF41] font-mono font-bold mb-2">WITHOUT AXLR8 BRIDGE:</h4>
-                    <ul className="text-sm text-gray-300 space-y-2 font-mono">
+                    <ul className="text-sm text-[#00FF41] space-y-2 font-mono opacity-80">
                       <li className="flex items-start gap-2"><span className="text-[#EF4444]">✗</span> Months-long ERP replacement projects</li>
                       <li className="flex items-start gap-2"><span className="text-[#EF4444]">✗</span> $500K+ implementation costs</li>
                       <li className="flex items-start gap-2"><span className="text-[#EF4444]">✗</span> High operational risk during migration</li>
@@ -1224,15 +1224,15 @@ const App = () => {
           {activeTab === 'identity' && (
             <div className="space-y-8 animate-fadeIn">
               <div className="border-l-4 border-[#00F0FF] pl-6 bg-gradient-to-r from-[#00F0FF]/10 to-transparent py-2">
-                <h2 className="text-3xl font-bold text-white mb-2">VISUAL IDENTITY PROTOCOL</h2>
-                <p className="text-gray-300 max-w-2xl font-light">
-                  The chosen identity represents the bridge between legacy and future—a simple dot notation connecting two worlds.
+                <h2 className="text-3xl font-bold text-white mb-2 font-mono">VISUAL IDENTITY PROTOCOL</h2>
+                <p className="text-[#00FF41] max-w-2xl font-mono opacity-80">
+                  &gt; The chosen identity represents the bridge between legacy and future—a simple dot notation connecting two worlds.
                 </p>
               </div>
 
               <div className="bg-black border-4 border-[#00FF41] p-16 text-center ibm-border">
                 <div className="text-[10px] text-[#00FF41] font-mono mb-8 opacity-70">CORPORATE IDENTIFIER // ACTIVE</div>
-                <div className="text-5xl md:text-7xl font-bold tracking-tight text-white font-sans mb-8">
+                <div className="text-5xl md:text-7xl font-bold tracking-wider text-white font-mono mb-8">
                   Trigent<span className="text-[#00F0FF] animate-pulse text-shadow-cyan">.</span>Logistics
                 </div>
                 <div className="text-sm text-[#00FF41] font-mono mb-8 opacity-80">
@@ -1246,15 +1246,15 @@ const App = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-black border-2 border-[#00FF41]/30 p-6">
                   <div className="text-xs text-[#00FF41] font-mono mb-3 font-bold">RATIONALE</div>
-                  <p className="text-sm text-gray-300 font-mono">Represents the technical bridge between legacy systems and modern APIs—the dot as the connection point.</p>
+                  <p className="text-sm text-[#00FF41] font-mono opacity-80">&gt; Represents the technical bridge between legacy systems and modern APIs—the dot as the connection point.</p>
                 </div>
                 <div className="bg-black border-2 border-[#00FF41]/30 p-6">
                   <div className="text-xs text-[#00FF41] font-mono mb-3 font-bold">APPLICATIONS</div>
-                  <p className="text-sm text-gray-300 font-mono">Website headers, business cards, terminal displays, technical documentation, API endpoints.</p>
+                  <p className="text-sm text-[#00FF41] font-mono opacity-80">&gt; Website headers, business cards, terminal displays, technical documentation, API endpoints.</p>
                 </div>
                 <div className="bg-black border-2 border-[#00FF41]/30 p-6">
                   <div className="text-xs text-[#00FF41] font-mono mb-3 font-bold">MESSAGING</div>
-                  <p className="text-sm text-gray-300 font-mono">Clean, professional, developer-friendly. Appeals to technical decision-makers.</p>
+                  <p className="text-sm text-[#00FF41] font-mono opacity-80">&gt; Clean, professional, developer-friendly. Appeals to technical decision-makers.</p>
                 </div>
               </div>
             </div>
